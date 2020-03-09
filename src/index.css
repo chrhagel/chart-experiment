@@ -16,3 +16,33 @@ svg g rect {
   /* fill:"#"; */
   fill: #61DAFB;
 }
+
+.App {
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-template-rows: 70px 120px auto;
+}
+
+.header-area {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+.data-picker-area {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  background-color: ghostwhite;
+}
+
+.chart-area {
+  grid-column: 1 ;
+  grid-row: 3;
+background-color: lavender;
+}
+
+.format-area{
+  grid-column: 2 ;
+  grid-row: 3;
+  background-color: honeydew;
+}
+
