@@ -1,0 +1,27 @@
+Build a chart that can be formatted.
+  it will have a lightweight theme and a heavyweight theme. 
+  you can choose to show y marks you can choose dash or not dash
+  you can click on a line to get a formatting dialog that let you set formatting stuff
+  you can have one color or color by label so there will have to be a 
+
+  it will come with default values and those will be possible to override. 
+
+  Maybe all default values are in a formatting state object. That state object will be driven from the dialog also...
+
+
+
+axis
+  make an offset of a variable size and take that into calculations
+  make y axis. tick marks should be meaningful. THe numbers should reflect the data so be tied to state. 
+
+
+
+
+
+
+
+
+If there is only one data element then 
+
+load data from external file 
+
