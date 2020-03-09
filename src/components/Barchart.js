@@ -61,8 +61,8 @@ class Barchart extends React.Component {
     function maxHeightCalc() {
       let h = 0;
       Object.keys(data).map(key => {
-        if (data[key].value > h) {
-          h = data[key].value;
+        if (data[key].rating > h) {
+          h = data[key].rating;
         }
       });
       return h;
@@ -90,10 +90,10 @@ class Barchart extends React.Component {
             <ColoredRect
               key={key}
               xPos={xPos * index + gutter}
-              yPos={height - scale * data[key].value}
-              height={scale * data[key].value}
+              yPos={height - scale * data[key].rating}
+              height={scale * data[key].rating}
               width={barWidth}
-              value={data[key].value}
+              value={data[key].rating}
               chartHeight={height} // used for labels
               color={this.props.theme.barcols[0]}
             />

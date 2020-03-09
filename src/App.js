@@ -3,6 +3,7 @@ import "./App.css";
 import Barchart from "./components/Barchart";
 import SVGchart from "./components/SVGchart";
 import rawdata from "./sample-data";
+import restaurants from "./sample-restaurants";
 
 class App extends React.Component {
   state = {
@@ -38,7 +39,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.loadSampleData();
-    this.setState({data: rawdata });
+    this.setState({data: restaurants });
   }
 
   render() {

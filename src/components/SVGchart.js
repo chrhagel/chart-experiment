@@ -15,8 +15,8 @@ class SVGchart extends React.Component {
     function maxHeightCalc() {
       let h = 0;
       Object.keys(data).map(key => {
-        if (data[key].value > h) {
-          h = data[key].value;
+        if (data[key].rating > h) {
+          h = data[key].rating;
         }
       });
       return h;
@@ -43,8 +43,8 @@ class SVGchart extends React.Component {
             <rect
               key={key}
               x={xPos * index}
-              y={height - scale * data[key].value}
-              height={scale * data[key].value}
+              y={height - scale * data[key].rating}
+              height={scale * data[key].rating}
               width={barWidth}
 
             />
