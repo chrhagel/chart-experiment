@@ -46,3 +46,6 @@ background-color: lavender;
   background-color: honeydew;
 }
 
+.data-picker-area input {
+  margin: 0px 15px 15px 5px;
+}

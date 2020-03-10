@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Barchart from "./components/Barchart";
+import VizContainer from "./components/VizContainer";
 import Dataselctor from "./components/Dataselector";
 import Formatter from "./components/Formatter";
 import restaurants from "./sample-restaurants";
@@ -8,6 +8,12 @@ import restaurants from "./sample-restaurants";
 class App extends React.Component {
   state = {
     data: {},
+    chartdata: {
+      city: false,
+      name: false,
+      years: false,
+      rating: false
+    },
     theme: {
       bgcol: "white",
       col: "black",
@@ -21,6 +27,13 @@ class App extends React.Component {
     this.setState({ data: restaurants });
   }
 
+  updateChartData = chartObj => {
+    // 1. overwrite current chartdata with chartObj
+    this.setState({
+      chartdata: chartObj
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -29,20 +42,24 @@ class App extends React.Component {
         </div>
 
         <div className="data-picker-area">
-          <Dataselctor/>
+          <Dataselctor
+            chartdata={this.state.chartdata}
+            updateChartData={this.updateChartData}
+          />
         </div>
 
         <div className="chart-area">
-          <Barchart
+          <VizContainer
             height={400}
             width={800}
             data={this.state.data}
+            chartdata={this.state.chartdata}
             theme={this.state.theme}
           />
         </div>
 
         <div className="format-area">
-          <Formatter/>
+          <Formatter />
         </div>
 
         {/* <div><Text text="Try click on rect" /></div> */}
