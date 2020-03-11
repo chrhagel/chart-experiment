@@ -24,7 +24,7 @@ class VizContainer extends React.Component {
       return this.makeTable(fields);
     }
     if (years && rating) {
-      return <p>scatter</p>;
+      return this.makeScatterplot();
     }
     if (years || rating) {
       if (years) {
@@ -33,11 +33,22 @@ class VizContainer extends React.Component {
         return this.makeBar("rating");
       }
     } else {
-      return <p>nothing</p>;
+      return <h1>Please select data to display</h1>;
     }
   };
 
-  makeTable = (fields) => {
+  makeScatterplot = () => {
+    return (
+      <Scatterplot
+        height={400}
+        width={800}
+        data={this.props.data}
+        theme={this.props.theme}
+      />
+    );
+  };
+
+  makeTable = fields => {
     return <TableViz fields={fields} data={this.props.data} />;
   };
 
@@ -74,7 +85,6 @@ class VizContainer extends React.Component {
 
     return (
       <>
-        <h2>decider</h2>
         {this.decideViz(chartdata)}
       </>
     );

@@ -6,7 +6,16 @@ class TableViz extends React.Component {
     let cells = [];
 
     fields.forEach(function(item, index, array) {
-      cells.push(<td key={item + index}>{restaurant[item]}</td>);
+      let stylename = ''
+      if (item === "rating" || item === "years") {
+        stylename = "num";
+      }
+
+      cells.push(
+        <td key={item + index} className={stylename}>
+          {restaurant[item]}
+        </td>
+      );
     });
 
     return cells;
