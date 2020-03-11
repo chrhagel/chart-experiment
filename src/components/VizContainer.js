@@ -8,7 +8,20 @@ class VizContainer extends React.Component {
     const { city, name, years, rating } = chartdata;
 
     if (city || name) {
-      return <p>table</p>;
+      let fields = [];
+      if (city) {
+        fields.push("city");
+      }
+      if (name) {
+        fields.push("name");
+      }
+      if (years) {
+        fields.push("years");
+      }
+      if (rating) {
+        fields.push("rating");
+      }
+      return this.makeTable(fields);
     }
     if (years && rating) {
       return <p>scatter</p>;
@@ -22,6 +35,10 @@ class VizContainer extends React.Component {
     } else {
       return <p>nothing</p>;
     }
+  };
+
+  makeTable = (fields) => {
+    return <TableViz fields={fields} data={this.props.data} />;
   };
 
   makeBar = field => {
