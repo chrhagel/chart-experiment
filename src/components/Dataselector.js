@@ -23,48 +23,50 @@ class Dataselector extends React.Component {
   };
 
   render() {
-
     return (
       <>
-        <p>Which data should be included</p>
+        <h2>Select Data to include</h2>
         <form>
-          <label for="city">City:</label>
-          <input
-            type="checkbox"
-            id="city"
-            name="city"
-            ref={this.cityRef}
-            onChange={this.handleCheck}
-          />
-
-          <label for="name">Name:</label>
-          <input
-            type="checkbox"
-            id="name"
-            name="name"
-            ref={this.nameRef}
-            onChange={this.handleCheck}
-          />
-
-          <br />
-
-          <label for="years">Years in business:</label>
-          <input
-            type="checkbox"
-            id="years"
-            name="years"
-            ref={this.yearsRef}
-            onChange={this.handleCheck}
-          />
-
-          <label for="rating">Rating:</label>
-          <input
-            type="checkbox"
-            id="rating"
-            name="rating"
-            ref={this.ratingRef}
-            onChange={this.handleCheck}
-          />
+          <div className="form-element">
+            <input
+              type="checkbox"
+              id="name"
+              name="name"
+              ref={this.nameRef}
+              onChange={this.handleCheck}
+            />
+            <label for="name">Restaurant Name</label>
+          </div>
+          <div className="form-element">
+            <input
+              type="checkbox"
+              id="city"
+              name="city"
+              ref={this.cityRef}
+              onChange={this.handleCheck}
+            />
+            <label for="city">City</label>
+          </div>
+          <div className="form-element">
+            <input
+              type="checkbox"
+              id="years"
+              name="years"
+              ref={this.yearsRef}
+              onChange={this.handleCheck}
+            />
+            <label for="years">Years in business</label>
+          </div>
+          <div className="form-element">
+            <input
+              type="checkbox"
+              id="rating"
+              name="rating"
+              ref={this.ratingRef}
+              onChange={this.handleCheck}
+            />
+            <label for="rating">Rating</label>
+          </div>
         </form>
       </>
     );

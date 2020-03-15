@@ -58,9 +58,9 @@ class App extends React.Component {
           />
         </div>
 
-        <div className="format-area">
+        {/* <div className="format-area">
           <Formatter />
-        </div>
+        </div> */}
 
         {/* <div><Text text="Try click on rect" /></div> */}
       </div>

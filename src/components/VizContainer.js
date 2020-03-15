@@ -33,7 +33,7 @@ class VizContainer extends React.Component {
         return this.makeBar("rating");
       }
     } else {
-      return <h1>Please select data to display</h1>;
+      return <p>Please select data to display</p>;
     }
   };
 

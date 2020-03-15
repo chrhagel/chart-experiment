@@ -1,98 +1,98 @@
 const restaurants = {
   d1: {
-    city: "Sammamish",
     name: "Pine Lake Alehouse",
+    city: "Sammamish",
     years: 17,
     rating: 80
   },
   d2: {
-    city: "Sammamish",
     name: "Venison",
+    city: "Sammamish",
     years: 1,
     rating: 90
   },
   d3: {
-    city: "Sammamish",
     name: "Teriaky Place",
+    city: "Sammamish",
     years: 20,
     rating: 30
   },
   d4: {
-    city: "Sammamish",
     name: "Pagliacho",
+    city: "Sammamish",
     years: 1,
     rating: 50
   },
   d5: {
-    city: "Sammamish",
     name: "Mod Pizza",
+    city: "Sammamish",
     years: 5,
     rating: 90
   },
   d6: {
-    city: "Sammamish",
     name: "Sammamish Cafe",
+    city: "Sammamish",
     years: 4,
     rating: 30
   },
   d7: {
-    city: "Sammamish",
     name: "Tanoor",
+    city: "Sammamish",
     years: 4,
     rating: 60
   },
   d8: {
-    city: "Seattle",
     name: "RN 74",
+    city: "Seattle",
     years: 10,
     rating: 80
   },
 
   d9: {
-    city: "Freemont",
     name: "Fiasco",
+    city: "Freemont",
     years: 4,
     rating: 70
   },
 
   d10: {
-    city: "Capitol Hill",
     name: "Mamnoon",
+    city: "Capitol Hill",
     years: 5,
     rating: 70
   },
 
   d11: {
-    city: "Redmond",
     name: "Stone Korean",
+    city: "Redmond",
     years: 9,
     rating: 70
   },
 
   d12: {
-    city: "Redmond",
     name: "Bai Tong",
+    city: "Redmond",
     years: 7,
     rating: 60
   },
 
   d13: {
-    city: "Capitol Hill",
     name: "Oddfellows",
+    city: "Capitol Hill",
     years: 6,
     rating: 60
   },
 
   d14: {
-    city: "Redmond",
     name: "Woodblock",
+    city: "Redmond",
     years: 7,
     rating: 80
   },
 
   d15: {
-    city: "Capitol Hill",
     name: "Honey hole",
+    city: "Capitol Hill",
     years: 15,
     rating: 20
   }
