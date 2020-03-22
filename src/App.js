@@ -18,7 +18,8 @@ class App extends React.Component {
       bgcol: "white",
       col: "black",
       barcols: ["#61DAFB", "orange", "silver"],
-      showYTicks: true
+      showYTicks: true, 
+      showYAxis: true,
     }
   };
 

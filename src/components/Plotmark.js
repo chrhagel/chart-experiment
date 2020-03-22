@@ -9,6 +9,7 @@ class Scatterplot extends React.Component {
   };
 
   render() {
+   console.log(this.props.value + " " + this.props.yPos ) 
     return (
       <>
         <Circle
