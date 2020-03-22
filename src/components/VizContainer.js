@@ -33,8 +33,8 @@ class VizContainer extends React.Component {
         return this.makeBar("rating");
       }
     } else {
-      // return this.makeScatterplot();
-      return <p>Please select data to display</p>;
+      return this.makeBar("rating");
+      // return <p>Please select data to display</p>;
     }
   };
 
@@ -75,6 +75,8 @@ class VizContainer extends React.Component {
         height={400}
         width={800}
         data={newdata}
+        xAxis={'Items'}
+        yAxis={field}
         theme={this.props.theme}
       />
     );
@@ -84,11 +86,7 @@ class VizContainer extends React.Component {
     const chartdata = this.props.chartdata;
     console.log(chartdata);
 
-    return (
-      <>
-        {this.decideViz(chartdata)}
-      </>
-    );
+    return <>{this.decideViz(chartdata)}</>;
   }
 }
 

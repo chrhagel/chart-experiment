@@ -20,7 +20,7 @@ class ColoredRect extends React.Component {
     const textYPosition = this.props.chartHeight - 30;
 
     // only show text if there is room to show it.
-    if (this.props.width > 30) {
+    if (this.props.width > 300) {
       return (
         <Text
           text={this.props.value}

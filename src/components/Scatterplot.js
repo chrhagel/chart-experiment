@@ -117,7 +117,6 @@ class Scatterplot extends React.Component {
               key={key}
               xPos={leftPadding + data[key].years * wScale}
               yPos={(drawingHeight- data[key].rating * (hScale))}
-              // yPos={data[key].rating * hScale}
               radius={markdiameter}
               color={this.props.theme.barcols[0]}
               value={

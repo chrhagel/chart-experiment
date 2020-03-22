@@ -1,5 +1,5 @@
 import React from "react";
-import { Stage, Layer, Rect, Line } from "react-konva";
+import { Stage, Layer, Rect, Line, Text } from "react-konva";
 import Konva from "konva";
 import ColoredRect from "./ColoredRect";
 
@@ -21,21 +21,18 @@ class Barchart extends React.Component {
     );
   };
 
-  renderYAxisTickMarks = (gutter, height) => {
+  renderYAxisTickMarks = (drawingHeight, leftPadding) => {
     if (this.props.theme.showYTicks) {
-      const numYMarks = 10;
-      const yAxisTickDistance = height / numYMarks + 1; // so we dont start at the x axis.
       var arr = [];
+      const numYMarks = 11;
+      const yAxisTickDistance = drawingHeight / numYMarks + 1; // so we dont start at the x axis.
+
       for (var i = 0; i < numYMarks; i++) {
+        const yPostition = drawingHeight - yAxisTickDistance * i;
         arr.push(
           <Line
             key={"mark" + i}
-            points={[
-              gutter - 3,
-              yAxisTickDistance * i,
-              this.props.width + 3,
-              yAxisTickDistance * i
-            ]}
+            points={[leftPadding, yPostition, this.props.width + 3, yPostition]}
             stroke={this.props.theme.col}
             strokeWidth={1}
             tension={1}
@@ -48,28 +45,57 @@ class Barchart extends React.Component {
     } else return null;
   };
 
+  // yDomainMax = highest value.
+  renderYAxis = (drawingHeight, yDomainMax, topPadding) => {
+    if (this.props.theme.showYAxis) {
+      var arr = [];
+      const numYMarks = 11; // so we have a baseline for 0 and a tick for each 10.
+      const domainTicks = parseInt(yDomainMax / (numYMarks - 1));
+      const yAxisTickDistance = drawingHeight / numYMarks + 1; // so we dont start at the x axis.
+
+      for (var i = 0; i < numYMarks; i++) {
+        arr.push(
+          <Text
+            key={"text" + i}
+            text={domainTicks * (numYMarks - (i + 1))}
+            x={28}
+            y={yAxisTickDistance * i + topPadding * 2}
+            fontSize={12}
+          />
+        );
+      }
+      return arr;
+    } else return null;
+  };
+
+  firstLetterToUpper = lowerStr => {
+    return lowerStr.charAt(0).toUpperCase() + lowerStr.substring(1);
+  };
+
+  maxHeightCalc = () => {
+    const data = this.props.data;
+    let h = 0;
+    Object.keys(data).map(key => {
+      if (data[key].value > h) {
+        h = data[key].value;
+      }
+    });
+    return h + 10; //To give some margin between the highest rating and the top of the chart.
+  };
+
   render() {
     const data = this.props.data;
-    let gutter = 0;
-    if (this.props.theme.showYTicks) {
-      gutter = 10;
-    }
+    const leftPadding = 50;
+    const topPadding = 10;
+    const bottomPadding = 20;
 
-    const width = this.props.width - gutter;
-    const height = this.props.height - gutter;
+    const width = this.props.width - leftPadding;
 
-    function maxHeightCalc() {
-      let h = 0;
-      Object.keys(data).map(key => {
-        if (data[key].value > h) {
-          h = data[key].value;
-        }
-      });
-      return h;
-    }
+    const height = this.props.height;
+    const drawingHeight = height - topPadding - bottomPadding;
 
     // highest bar should fill up the barchart height. All bars should be scaled
-    const scale = height / maxHeightCalc();
+    const scale = drawingHeight / (this.maxHeightCalc() + 7);
     // x posiiton of the bar
     const xPos = width / Object.keys(data).length;
     // space between bars should be 1/2 the width of bars.
@@ -81,16 +107,19 @@ class Barchart extends React.Component {
     return (
       <Stage width={this.props.width} height={this.props.height}>
         <Layer>
-          {this.renderBackground(height, width, gutter)}
+          {this.renderBackground(height, width, leftPadding)}
 
-          {this.renderYAxisTickMarks(gutter, height)}
+          {/* {this.renderYAxisTickMarks(leftPadding, height)} */}
+          {this.renderYAxisTickMarks(drawingHeight, leftPadding)}
+          {this.renderYAxis(drawingHeight, this.maxHeightCalc(), topPadding)}
 
           {/* Bars */}
           {Object.keys(data).map((key, index) => (
             <ColoredRect
               key={key}
-              xPos={xPos * index + gutter}
-              yPos={height - scale * data[key].value}
+              xPos={xPos * index + leftPadding}
+              yPos={drawingHeight - data[key].value * scale}
+              // yPos={height - scale * data[key].value}
               height={scale * data[key].value}
               width={barWidth}
               value={data[key].value}
@@ -101,7 +130,12 @@ class Barchart extends React.Component {
 
           <Line
             // horisontal x axis
-            points={[gutter, height, this.props.width, height]}
+            points={[
+              leftPadding,
+              drawingHeight,
+              this.props.width,
+              drawingHeight
+            ]}
             stroke={"black"}
             strokeWidth={1}
             tension={1}
@@ -110,10 +144,25 @@ class Barchart extends React.Component {
           <Line
             // vertical Y axis
             // [x1, y1, x2, y2, x3, y3]
-            points={[gutter, 0, gutter, height]}
+            points={[leftPadding, 0, leftPadding, drawingHeight]}
             stroke={"black"}
             strokeWidth={1}
             tension={1}
+          />
+
+          <Text
+            text={this.firstLetterToUpper(this.props.yAxis)}
+            x={18}
+            y={height / 2 - 20}
+            fontSize={15}
+            rotation={90}
+          />
+
+          <Text
+            text={this.firstLetterToUpper(this.props.xAxis)}
+            x={(width + leftPadding) / 2 - 20}
+            y={height - 17}
+            fontSize={15}
           />
         </Layer>
       </Stage>
